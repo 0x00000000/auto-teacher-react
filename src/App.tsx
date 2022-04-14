@@ -2,16 +2,13 @@ import React from 'react';
 
 import './App.css';
 
-import {TASK_TYPE_ADDICTION} from "./types";
-import Training from './components/training';
+import Navigator from './components/navigator';
 
 function App() {
   return (
-    <div className="App">
+    <div className="AutoTeacher">
       <header className="App-header">
-        <Training
-            tasksDefaultType={TASK_TYPE_ADDICTION}
-        />
+        <Navigator/>
       </header>
     </div>
   );

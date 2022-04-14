@@ -2,19 +2,19 @@ import React from 'react';
 
 type Props = {
     casesList: Array<string>;
-    onAnswerSelected: (event: any) => void;
+    onAddAnswer: (answer: string) => void;
 };
 
-class TaskAnswerCasesField extends React.Component<Props> {
+class AnswerCasesField extends React.Component<Props> {
     render() {
         return (
             <div className="task-answer-cases">
                 {this.props.casesList.map<React.ReactNode>(
-                    t => <span onClick={(event: any) => this.props.onAnswerSelected(event)}>{t}</span>
+                    (value, key) => <span key={key} onClick={(event: any) => this.props.onAddAnswer(event.target.innerText)}>{value}</span>
                 )}
             </div>
         );
     };
 }
 
-export default TaskAnswerCasesField;
+export default AnswerCasesField;
