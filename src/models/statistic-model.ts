@@ -10,6 +10,7 @@ class StatisticModel {
     _storage: StorageModel = new StorageModel();
     _statisticData: any = null;
     _sessionData: SessionData = {counter: 0, score: 0,};
+    _scoreForLevel: number = 100;
 
     constructor(type: string) {
         this.init(type);
@@ -27,6 +28,10 @@ class StatisticModel {
 
     getTotalScore(): number {
         return this._statisticData?.score ?? 0;
+    }
+
+    getTotalLevel(): number {
+        return Math.ceil(this.getTotalScore() / this._scoreForLevel);
     }
 
     getSessionCounter(): number {

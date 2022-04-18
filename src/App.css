@@ -54,7 +54,7 @@
 }
 
 .AutoTeacher h3, .AutoTeacher h4 {
-  margin: 10px;
+  margin: 10px 0;
 }
 
 .AutoTeacher input[type=text],
@@ -81,15 +81,65 @@
   text-align: center;
 }
 
-.task-answer-cases {
-  border: 1px solid gray;
-  margin: 10px;
-  padding: 10px;
+.task-image-answer {
+  text-align: center;
+  margin: 5px 0;
 }
+
+.task-image-answer h2 {
+  margin: 5px 0;
+}
+
+.task-answer-cases {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.task-answer-image-cases {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
 .task-answer-cases > span {
   display: inline-block;
   border: 1px solid gray;
   margin: 5px;
   padding: 15px;
   cursor: pointer;
+}
+
+.task-answer-image-cases > span {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+}
+
+img.task-image {
+  width: 130px;
+  margin: 5px;
+}
+
+.task-image-answer-box {
+  height: 130px;
+}
+
+@media (max-width: 1200px) {
+  img.task-image {
+    width: 90px;
+  }
+  .task-image-answer-box {
+    height: 90px;
+  }
+
+}
+
+@media (max-width: 900px) {
+  img.task-image {
+    width: 70px;
+    margin: 2px;
+  }
+  .task-image-answer-box {
+    height: 70px;
+  }
+
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import AnswerCasesField from "./answer-cases-field";
 
-import BaseTaskModel from "../models/base-task-model";
+import BaseTaskModel from "../../../models/tasks/base-task-model";
 
 type Props = {
     taskModel: BaseTaskModel;
@@ -11,6 +11,7 @@ type Props = {
 
 type State = {
     exercisePartsList: Array<string>,
+    answerCasesList: Array<string>;
     answersList: Array<string>;
     isCorrectAnswer: boolean;
     isAnswerChecked: boolean;
@@ -21,6 +22,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
         super(props);
         this.state = {
             exercisePartsList: this.props.taskModel.getExercisePartsList(),
+            answerCasesList: this.props.taskModel.getAnswerCasesList(),
             answersList: [],
             isCorrectAnswer: false,
             isAnswerChecked: false,
@@ -43,6 +45,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
         this.setState(state => ({
             ...this.state,
             exercisePartsList: this.props.taskModel.getExercisePartsList(),
+            answerCasesList: this.props.taskModel.getAnswerCasesList(),
             answersList: [''],
             isCorrectAnswer: false,
             isAnswerChecked: false,
@@ -85,7 +88,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
                     </span>
                 ))}
                 <AnswerCasesField
-                    casesList={this.props.taskModel.getAnswerCasesList()}
+                    casesList={this.state.answerCasesList}
                     onAddAnswer={(answer: string) => this.onAddAnswer(answer)}
                 />
                 <h3>&nbsp;

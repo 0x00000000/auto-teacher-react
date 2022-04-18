@@ -14,13 +14,25 @@ class Menu extends React.Component<Props> {
                 onClick={(event: any) => this.props.onTypeSelect(event)}
             >A + B</button>
             <button
+                value={TASK_TYPES.ADDICTION_REVERSED}
+                onClick={(event: any) => this.props.onTypeSelect(event)}
+            >A + ?</button>
+            <button
                 value={TASK_TYPES.SUBTRACTION}
                 onClick={(event: any) => this.props.onTypeSelect(event)}
             >A - B</button>
             <button
+                value={TASK_TYPES.SUBTRACTION_REVERSED}
+                onClick={(event: any) => this.props.onTypeSelect(event)}
+            >A - ?</button>
+            <button
                 value={TASK_TYPES.COMPARISON}
                 onClick={(event: any) => this.props.onTypeSelect(event)}
             >AAA = BBB</button>
+            <button
+                value={TASK_TYPES.READING}
+                onClick={(event: any) => this.props.onTypeSelect(event)}
+            >Reading</button>
         </>;
     }
 }

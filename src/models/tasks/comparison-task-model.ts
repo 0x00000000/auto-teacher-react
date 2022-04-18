@@ -1,6 +1,6 @@
 import BaseTaskModel from './base-task-model';
-import {TASK_TYPES} from "../../../constants";
-import {TaskSettings} from "../types";
+import {TASK_TYPES} from "../../constants";
+import {TaskSettings} from "../../types";
 
 class ComparisonTaskModel extends BaseTaskModel {
 

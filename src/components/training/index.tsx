@@ -16,6 +16,7 @@ type State = {
     sessionScore: number;
     sessionCounter: number;
     totalScore: number;
+    totalLevel: number;
     tasksType: string;
     typeSelected: boolean;
     readyToFinish: boolean;
@@ -34,6 +35,7 @@ class Training extends React.Component<Props, State> {
             sessionScore: this._statisticModel.getSessionScore(),
             sessionCounter: this._statisticModel.getSessionCounter(),
             totalScore: this._statisticModel.getTotalScore(),
+            totalLevel: this._statisticModel.getTotalLevel(),
             tasksType: props.tasksDefaultType,
             typeSelected: false,
             readyToFinish: false,
@@ -50,6 +52,7 @@ class Training extends React.Component<Props, State> {
                 sessionScore: this._statisticModel.getSessionScore(),
                 sessionCounter: this._statisticModel.getSessionCounter(),
                 totalScore: this._statisticModel.getTotalScore(),
+                totalLevel: this._statisticModel.getTotalLevel(),
                 tasksType: type,
                 typeSelected: true,
                 readyToFinish: false,
@@ -65,6 +68,7 @@ class Training extends React.Component<Props, State> {
             sessionScore: this._statisticModel.getSessionScore(),
             sessionCounter: this._statisticModel.getSessionCounter(),
             totalScore: this._statisticModel.getTotalScore(),
+            totalLevel: this._statisticModel.getTotalLevel(),
             readyToFinish: false,
         }));
     }
@@ -81,6 +85,7 @@ class Training extends React.Component<Props, State> {
                 sessionScore: this._statisticModel.getSessionScore(),
                 sessionCounter: this._statisticModel.getSessionCounter(),
                 totalScore: this._statisticModel.getTotalScore(),
+                totalLevel: this._statisticModel.getTotalLevel(),
                 tasksType: this.props.tasksDefaultType,
                 typeSelected: false,
                 readyToFinish: false,
@@ -106,9 +111,9 @@ class Training extends React.Component<Props, State> {
                         <button
                             onClick={() => this.finishTraining()}
                         >{Boolean(this.state.readyToFinish) ? "Click one more time to finish" : "Finish training"}</button>
-                        <h3>Score: {this.state.sessionScore}</h3>
-                        <h3>Total score: {this.state.totalScore}</h3>
-                        <h4>Task number: {this.state.sessionCounter}</h4>
+                        <h4>Score:&nbsp;{this.state.sessionScore}</h4>
+                        <h4>Total&nbsp;score:&nbsp;{this.state.totalScore} (level:&nbsp;{this.state.totalLevel})</h4>
+                        <hr/>
                         <Task
                             taskType={this.state.tasksType}
                             statisticModel={this._statisticModel}

@@ -1,4 +1,4 @@
-import {TaskSettings} from '../types';
+import {TaskSettings} from '../../types';
 
 type OperatorsSettings = {
     leftOperandMin?: number;
@@ -14,7 +14,7 @@ class BaseTaskModel {
     _type: string = '';
 
     getTotalScoreDevideCoof(): number {
-        return 100;
+        return 50;
     }
 
     getBaseLevelMultipleCoof(): number {
@@ -23,7 +23,6 @@ class BaseTaskModel {
 
     constructor(settings: TaskSettings) {
         this.initSettings(settings);
-        this.init();
     }
 
     init() {

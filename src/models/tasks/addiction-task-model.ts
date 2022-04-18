@@ -1,5 +1,5 @@
-import BaseTaskModel from './base-task-model'
-import {TASK_TYPES} from "../../../constants";
+import BaseTaskModel from './base-task-model';
+import {TASK_TYPES} from "../../constants";
 
 class AddictionTaskModel extends BaseTaskModel {
 

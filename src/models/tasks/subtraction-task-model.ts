@@ -1,12 +1,12 @@
 import BaseTaskModel from './base-task-model';
-import {TASK_TYPES} from '../../../constants';
+import {TASK_TYPES} from '../../constants';
 
 class SubtractionTaskModel extends BaseTaskModel {
     init() {
         super.init();
         this._type = TASK_TYPES.SUBTRACTION;
 
-        if (Number(this.getAnswersList()[0]) < 0) {
+        if (Number(this._leftOperand) < Number(this._rightOperand)) {
             this.swapOperands();
         }
     }
