@@ -20,6 +20,7 @@ type State = {
     formFields: {
         parentEmail: string;
     };
+    title: string;
 };
 
 class Settings extends React.Component<Props, State> {
@@ -34,6 +35,9 @@ class Settings extends React.Component<Props, State> {
         SETTINGS_SAVED: 'Sattings saved',
     };
 
+    _titleRegister: string = 'Registration';
+    _titleSettings: string = 'Settings';
+
     constructor(props: Props) {
         super(props);
 
@@ -44,6 +48,7 @@ class Settings extends React.Component<Props, State> {
                 formFields: {
                     parentEmail: '',
                 },
+                title: this._titleRegister,
             };
         } else {
             this.state = {
@@ -52,6 +57,7 @@ class Settings extends React.Component<Props, State> {
                 formFields: {
                     parentEmail: this._settingsModel.getParentEmail(),
                 },
+                title: this._titleSettings,
             };
         }
     }
@@ -116,6 +122,7 @@ class Settings extends React.Component<Props, State> {
         this.setState(state => ({
             ...this.state,
             message: message,
+            title: this._titleSettings,
         }));
 
         this.props.onHideNavigation(false);
@@ -123,8 +130,8 @@ class Settings extends React.Component<Props, State> {
 
     render() {
         return <div className="Settings">
-            <h1>Settings</h1>
-            <h3>{this.state.message}</h3>
+            <h2>{this.state.title}</h2>
+            <h4>{this.state.message}</h4>
             {Boolean(this.state.subsection === SUBSECTIONS.CHECK_PASSWORD) && (
                 <Auth
                     onAuthPasswordChange={(event: any) => this.onAuthPasswordChange(event)}
