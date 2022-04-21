@@ -16,8 +16,11 @@ const SECTIONS = {
     TRAINING: 'SECTION_TRAINING',
 };
 
+const BASE_URL = '/';
+
 export {
     STORAGE,
     TASK_TYPES,
     SECTIONS,
+    BASE_URL,
 };

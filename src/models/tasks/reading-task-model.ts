@@ -2,7 +2,7 @@ import BaseTaskModel from './base-task-model';
 import IllustratedDictionaryModel from '../illustrated-dictionary-model';
 import {IllustratedDictionaryItem, TaskSettings} from '../../types';
 
-import {TASK_TYPES} from "../../constants";
+import {TASK_TYPES, BASE_URL} from "../../constants";
 
 class ReadingTaskModel extends BaseTaskModel {
     _dictionary: IllustratedDictionaryModel = new IllustratedDictionaryModel();
@@ -11,7 +11,7 @@ class ReadingTaskModel extends BaseTaskModel {
     _answerCasesList: Array<string> = [];
     _answersList: Array<string> = [];
     _exercisePartsList: Array<string> = [];
-    _imagesUri: string = '/images/illustrated-distionary/';
+    _imagesUri: string = BASE_URL + 'images/illustrated-distionary/';
 
     init() {
         super.init();

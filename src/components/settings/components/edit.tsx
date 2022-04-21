@@ -27,7 +27,7 @@ class Edit extends React.Component<Props, State> {
 
     render() {
         return <>
-            <p>
+            <div>
                 <label>Parent's password*:</label>
                 <input
                     name='password'
@@ -35,8 +35,8 @@ class Edit extends React.Component<Props, State> {
                     onChange={(event: any) => this.props.onParentPasswordChange(event)}
                 />
 
-            </p>
-            <p>
+            </div>
+            <div>
                 <label>Confirm password*:</label>
                 <input
                     name='passwordConfirm'
@@ -44,8 +44,8 @@ class Edit extends React.Component<Props, State> {
                     onChange={(event: any) => this.props.onPasswordConfirmChange(event)}
                 />
 
-            </p>
-            <p>
+            </div>
+            <div>
                 <label>Parent's e-mail:</label>
                 <input
                     name='email'
@@ -53,8 +53,8 @@ class Edit extends React.Component<Props, State> {
                     defaultValue={this.props.settingsModel.getParentEmail()}
                     onChange={(event: any) => this.props.onParentEmailChange(event)}
                 />
-            </p>
-            <p>
+            </div>
+            <div>
                 <label>Child name*:</label>
                 <input
                     name='name'
@@ -62,8 +62,8 @@ class Edit extends React.Component<Props, State> {
                     defaultValue={this.props.settingsModel.getChildName()}
                     onChange={(event: any) => this.props.onChildNameChange(event)}
                 />
-            </p>
-            <p>
+            </div>
+            <div>
                 <label>Start from level*:</label>
                 <input
                     name='startLevel'
@@ -71,12 +71,12 @@ class Edit extends React.Component<Props, State> {
                     defaultValue={this.props.settingsModel.getChildBaseLevel()}
                     onChange={(event: any) => this.props.onChildBaseLevelChange(event)}
                 />
-            </p>
-            <p>
+            </div>
+            <div>
                 <button
                     onClick={() => this.props.onSettingsSave()}
                 >Save</button>
-            </p>
+            </div>
         </>;
     }
 }
