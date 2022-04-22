@@ -1,3 +1,5 @@
+const BASE_URL = '/';
+
 const STORAGE = {
     SETTINGS: 'STORAGE_SETTINGS',
 };
@@ -16,11 +18,9 @@ const SECTIONS = {
     TRAINING: 'SECTION_TRAINING',
 };
 
-const BASE_URL = '/';
-
 export {
+    BASE_URL,
     STORAGE,
     TASK_TYPES,
     SECTIONS,
-    BASE_URL,
 };

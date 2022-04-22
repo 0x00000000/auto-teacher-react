@@ -140,14 +140,14 @@ class IllustratedDictionaryModel {
         {russian: 'помидор', image: '136.jpg',},
         {russian: 'ананас', image: '137.jpg',},
         {russian: 'огурец', image: '138.jpg',},
-        {russian: 'очки', image: '138.jpg',},
-        {russian: 'шапка', image: '138.jpg',},
-        {russian: 'щётка', image: '138.jpg',},
-        {russian: 'нож', image: '138.jpg',},
-        {russian: 'руль', image: '138.jpg',},
-        {russian: 'чайник', image: '138.jpg',},
-        {russian: 'вишня', image: '138.jpg',},
-        {russian: 'стол', image: '138.jpg',},
+        {russian: 'очки', image: '139.jpg',},
+        {russian: 'шапка', image: '140.jpg',},
+        {russian: 'щётка', image: '141.jpg',},
+        {russian: 'нож', image: '142.jpg',},
+        {russian: 'руль', image: '143.jpg',},
+        {russian: 'чайник', image: '144.jpg',},
+        {russian: 'вишня', image: '145.jpg',},
+        {russian: 'стол', image: '146.jpg',},
     ];
 
     getRandomItems(count: number): Array<IllustratedDictionaryItem> {
