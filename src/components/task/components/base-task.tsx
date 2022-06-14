@@ -31,7 +31,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
 
     onAddAnswer(answer: string) {
         this.setState(state => ({
-            ...this.state,
+            ...state,
             answersList: [answer],
         }));
     }
@@ -43,7 +43,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
 
         this.props.taskModel.init();
         this.setState(state => ({
-            ...this.state,
+            ...state,
             exercisePartsList: this.props.taskModel.getExercisePartsList(),
             answerCasesList: this.props.taskModel.getAnswerCasesList(),
             answersList: [''],
@@ -59,7 +59,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
 
         let isCorrectAnswer: boolean = this.props.taskModel.checkAnswersList(this.state.answersList);
         this.setState(state => ({
-            ...this.state,
+            ...state,
             isCorrectAnswer: isCorrectAnswer,
             isAnswerChecked: true,
         }));
@@ -67,7 +67,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
 
     onAnswerClear() {
         this.setState(state => ({
-            ...this.state,
+            ...state,
             answersList: [],
         }));
     }

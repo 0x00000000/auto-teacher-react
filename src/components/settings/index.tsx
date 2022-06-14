@@ -70,12 +70,12 @@ class Settings extends React.Component<Props, State> {
         if (this._settingsModel.checkParentPassword(this._authPassword)) {
             this._authPassword = '';
             this.setState(state => ({
-                ...this.state,
+                ...state,
                 subsection: SUBSECTIONS.EDIT_SETTINGS,
             }));
         } else {
             this.setState(state => ({
-                ...this.state,
+                ...state,
                 message: String(this._messagesList?.WRONG_PASSWORD),
             }));
         }
@@ -120,7 +120,7 @@ class Settings extends React.Component<Props, State> {
         }
 
         this.setState(state => ({
-            ...this.state,
+            ...state,
             message: message,
             title: this._titleSettings,
         }));

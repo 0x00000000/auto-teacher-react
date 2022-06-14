@@ -41,7 +41,7 @@ class Navigator extends React.Component<Props, State> {
 
     onSelectSection(event: any): void {
         this.setState(state => ({
-            ...this.state,
+            ...state,
             section: event?.target?.value,
             hideNavigation: false,
         }));
@@ -49,7 +49,7 @@ class Navigator extends React.Component<Props, State> {
 
     onHideNavigation(shouldHide: boolean): void {
         this.setState(state => ({
-            ...this.state,
+            ...state,
             hideNavigation: shouldHide,
         }));
 
