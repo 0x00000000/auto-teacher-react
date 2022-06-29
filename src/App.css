@@ -47,6 +47,10 @@
   padding: 10px;
 }
 
+.importantMessage {
+  color: red;
+}
+
 .task-container span.correct{
   color: green;
 }

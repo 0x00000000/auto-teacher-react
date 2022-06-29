@@ -1,8 +1,8 @@
 import React from 'react';
 
 type Props = {
-    onAuthPasswordChange: (event: any) => void,
-    onAuthPasswordCheck: () => void,
+    onAuthPasswordChange: (event: any) => void;
+    onAuthPasswordCheck: () => void;
 };
 
 class Auth extends React.Component<Props> {

@@ -1,5 +1,6 @@
-type TaskSettings = {
+type TaskSettingsType = {
     baseLevel: number;
+    maxLevel: number;
     totalScore: number;
 }
 
@@ -8,4 +9,4 @@ type IllustratedDictionaryItem = {
     image: string;
 }
 
-export type {TaskSettings, IllustratedDictionaryItem,};
+export type {TaskSettingsType, IllustratedDictionaryItem,};

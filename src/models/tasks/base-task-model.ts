@@ -1,4 +1,4 @@
-import {TaskSettings} from '../../types';
+import {TaskSettingsType} from '../../types';
 
 type OperatorsSettings = {
     leftOperandMin?: number;
@@ -21,7 +21,7 @@ class BaseTaskModel {
         return 1;
     }
 
-    constructor(settings: TaskSettings) {
+    constructor(settings: TaskSettingsType) {
         this.initSettings(settings);
     }
 
@@ -30,8 +30,8 @@ class BaseTaskModel {
         this._rightOperand = this.getOperatorValue(this._settings?.leftOperandMin, this._settings?.rightOperandMax);
     }
 
-    initSettings(settings: TaskSettings) {
-        const operatorMax: number = this.getMaxOperator(settings);
+    initSettings(settings: TaskSettingsType) {
+        let operatorMax: number = this.getMaxOperator(settings);
         this._settings = {};
         this._settings.leftOperandMin = Math.floor(operatorMax / 2);
         this._settings.leftOperandMax = operatorMax ?? 5;
@@ -72,11 +72,16 @@ class BaseTaskModel {
         return Math.floor(Math.random() * (Number(max) - Number(min) + 1)) + Number(min);
     }
 
-    getMaxOperator(settings: TaskSettings): number {
-        let baseValue: number = settings.baseLevel * this.getBaseLevelMultipleCoof();
+    getMaxOperator(settings: TaskSettingsType): number {
+        const baseValue: number = settings.baseLevel * this.getBaseLevelMultipleCoof();
         let increaseValue: number = settings.totalScore / this.getTotalScoreDevideCoof();
 
-        return Math.floor(baseValue + increaseValue)
+        let operatorMax: number = Math.floor(baseValue + increaseValue);
+        if (settings.maxLevel > 0 && operatorMax > settings.maxLevel) {
+            operatorMax = settings.maxLevel;
+        }
+
+        return operatorMax;
     }
 
     getLeftOperand(): string {
@@ -104,6 +109,7 @@ class BaseTaskModel {
         }
         return casesList;
     }
+
 }
 
 export default BaseTaskModel;

@@ -8,8 +8,8 @@ import Menu from './components/menu';
 import Task from '../task';
 
 type Props = {
-    tasksDefaultType: string,
-    onHideNavigation: (shouldHide: boolean) => void,
+    tasksDefaultType: string;
+    onHideNavigation: (shouldHide: boolean) => void;
 };
 
 type State = {
@@ -117,7 +117,7 @@ class Training extends React.Component<Props, State> {
                         <Task
                             taskType={this.state.tasksType}
                             statisticModel={this._statisticModel}
-                            baseLevel={this._settingsModel.getChildBaseLevel()}
+                            settingsModel={this._settingsModel}
                             onIncreaseScore={(score?: number) => this.onIncreaseScore(score)}
                         />
                     </>

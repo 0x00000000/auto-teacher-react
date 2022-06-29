@@ -1,5 +1,5 @@
 import {TASK_TYPES} from '../constants';
-import {TaskSettings} from "../types";
+import {TaskSettingsType} from "../types";
 
 import BaseTaskModel from '../models/tasks/base-task-model';
 import AddictionTaskModel from '../models/tasks/addiction-task-model';
@@ -9,13 +9,42 @@ import SubtractionReversedTaskModel from '../models/tasks/subtraction-reversed-t
 import ComparisonTaskModel from '../models/tasks/comparison-task-model';
 import ReadingTaskModel from '../models/tasks/reading-task-model';
 
+type TaskDataItemType = {
+    type: string;
+    caption: string;
+};
+
 class TaskFactory {
-    createTask(taskType: string, baseLevel: number, totalScore: number) {
+
+    _taskData: TaskDataItemType[] = [
+        {
+            type: TASK_TYPES.ADDICTION,
+            caption: 'Addiction (A + B)',
+        },
+        {
+            type: TASK_TYPES.ADDICTION_REVERSED,
+            caption: 'Addiction reversed (A + ?)',
+        },
+        {
+            type: TASK_TYPES.SUBTRACTION,
+            caption: 'Subtraction (A - B)',
+        },
+        {
+            type: TASK_TYPES.SUBTRACTION_REVERSED,
+            caption: 'Subtraction reversed (A - ?)',
+        },
+        {
+            type: TASK_TYPES.COMPARISON,
+            caption: 'Comparison',
+        },
+        {
+            type: TASK_TYPES.READING,
+            caption: 'Reading',
+        },
+    ];
+
+    createTask(taskType: string, settings: TaskSettingsType) {
         let taskModel: BaseTaskModel;
-        let settings: TaskSettings = {
-            baseLevel: baseLevel,
-            totalScore: totalScore,
-        };
         switch (taskType) {
             case TASK_TYPES.ADDICTION:
                 taskModel = new AddictionTaskModel(settings);
@@ -42,6 +71,33 @@ class TaskFactory {
         taskModel.init();
         return taskModel;
     }
+
+    getTasksTypesList(): string[] {
+        let typesList: string[] = [];
+        type ObjectKey = keyof typeof TASK_TYPES;
+        for (let type in TASK_TYPES) {
+            const key = type as ObjectKey;
+            typesList.push(TASK_TYPES[key]);
+        }
+        return typesList;
+    }
+
+    getTaskCaption(type: string): string {
+        let caption: string = '';
+
+        this._taskData.map(function(data) {
+            if (data.type === type) {
+                caption = data.caption;
+            }
+        });
+
+        if (! caption) {
+            caption = type;
+        }
+
+        return caption;
+    }
+
 }
 
 export default TaskFactory;

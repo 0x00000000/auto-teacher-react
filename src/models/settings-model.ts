@@ -1,4 +1,4 @@
-import StorageModel from "./storage-model";
+import StorageModel from './storage-model';
 
 class SettingsModel {
     _storageKey = 'STORAGE_SETTINGS';
@@ -39,6 +39,21 @@ class SettingsModel {
 
     setChildBaseLevel(childBaseLevel: number): void {
         this._settingsData.childBaseLevel = childBaseLevel;
+    }
+
+    setTaskSetting(taskType: string, key: string, value: string): void {
+        if (! this._settingsData?.taskSettings) {
+            this._settingsData.taskSettings = {};
+        }
+        if (! this._settingsData.taskSettings?.[taskType]) {
+            this._settingsData.taskSettings[taskType] = {};
+        }
+        this._settingsData.taskSettings[taskType][key] = value;
+    }
+
+    getTaskSetting(taskType: string, key: string): string[] {
+console.log('taskSettings', this._settingsData?.taskSettings);
+        return this._settingsData?.taskSettings?.[taskType]?.[key];
     }
 
     save(): boolean {

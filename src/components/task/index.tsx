@@ -1,9 +1,11 @@
 import React from 'react';
 
 import StatisticModel from '../../models/statistic-model';
+import SettingsModel from '../../models/settings-model';
 import BaseTaskModel from '../../models/tasks/base-task-model';
 
 import TaskFactory from "../../classes/task-factory";
+import { TaskSettingsType } from "../../types";
 
 import BaseTaskCompenent from './components/base-task'
 import ReadingTaskCompenent from './components/reading-task'
@@ -13,7 +15,7 @@ import {TASK_TYPES} from '../../constants';
 type Props = {
     taskType: string;
     statisticModel: StatisticModel;
-    baseLevel: number;
+    settingsModel: SettingsModel;
     onIncreaseScore: (score?: number) => void;
 }
 
@@ -34,10 +36,14 @@ class Task extends React.Component<Props, State> {
     }
 
     createTaskModel(taskType: string): BaseTaskModel {
+        let settings: TaskSettingsType = {
+            baseLevel: Number(this.props.settingsModel.getChildBaseLevel()),
+            maxLevel: Number(this.props.settingsModel.getTaskSetting(taskType, 'maxLevel')),
+            totalScore: this.props.statisticModel.getTotalScore(),
+        };
         return this._taskFactory.createTask(
             taskType,
-            this.props.baseLevel,
-            this.props.statisticModel.getTotalScore()
+            settings
         );
     }
 

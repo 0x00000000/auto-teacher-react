@@ -1,6 +1,6 @@
 import BaseTaskModel from './base-task-model';
 import {TASK_TYPES} from "../../constants";
-import {TaskSettings} from "../../types";
+import {TaskSettingsType} from "../../types";
 
 class AddictionReversedTaskModel extends BaseTaskModel {
     _isFirstOperandIsAsked: boolean = false;
@@ -13,7 +13,7 @@ class AddictionReversedTaskModel extends BaseTaskModel {
         this._rightOperand = Number(this._leftOperand) + Number(this._rightOperand);
     }
 
-    initSettings(settings: TaskSettings) {
+    initSettings(settings: TaskSettingsType) {
         const operatorMax: number = this.getMaxOperator(settings);
         this._settings = {};
         this._settings.leftOperandMin = 0;

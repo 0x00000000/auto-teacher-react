@@ -3,7 +3,7 @@ import React from 'react';
 import {TASK_TYPES} from '../../../constants';
 
 type Props = {
-    onTypeSelect: (event: any) => void,
+    onTypeSelect: (event: any) => void;
 };
 
 class Menu extends React.Component<Props> {

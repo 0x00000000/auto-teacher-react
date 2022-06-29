@@ -7,11 +7,12 @@ import Edit from './components/edit';
 
 const SUBSECTIONS = {
     CHECK_PASSWORD: 'SUBSECTION_PASSWORD_CHECK',
+    REGISTER: 'SUBSECTION_REGISTER',
     EDIT_SETTINGS: 'SUBSECTION_EDIT_SETTINGS',
 };
 
 type Props = {
-    onHideNavigation: (shouldHide: boolean) => void,
+    onHideNavigation: (shouldHide: boolean) => void;
 };
 
 type State = {
@@ -43,7 +44,7 @@ class Settings extends React.Component<Props, State> {
 
         if (! this._settingsModel.isValid()) {
             this.state = {
-                subsection: SUBSECTIONS.EDIT_SETTINGS,
+                subsection: SUBSECTIONS.REGISTER,
                 message: '',
                 formFields: {
                     parentEmail: '',
@@ -62,11 +63,11 @@ class Settings extends React.Component<Props, State> {
         }
     }
 
-    onAuthPasswordChange(event: any) {
+    onAuthPasswordChange(event: any): void {
         this._authPassword = String(event.target?.value);
     }
 
-    onAuthPasswordCheck() {
+    onAuthPasswordCheck(): void {
         if (this._settingsModel.checkParentPassword(this._authPassword)) {
             this._authPassword = '';
             this.setState(state => ({
@@ -81,24 +82,28 @@ class Settings extends React.Component<Props, State> {
         }
     }
 
-    onPasswordConfirmChange(event: any) {
+    onPasswordConfirmChange(event: any): void {
         this._passwordConfirm = String(event?.target?.value);
     }
 
-    onParentPasswordChange(event: any) {
+    onParentPasswordChange(event: any): void {
         this._parentPassword = String(event?.target?.value);
     }
 
-    onParentEmailChange(event: any) {
+    onParentEmailChange(event: any): void {
         this._settingsModel.setParentEmail(String(event?.target?.value));
     }
 
-    onChildNameChange(event: any) {
+    onChildNameChange(event: any): void {
         this._settingsModel.setChildName(String(event?.target?.value));
     }
 
-    onChildBaseLevelChange(event: any) {
+    onChildBaseLevelChange(event: any): void {
         this._settingsModel.setChildBaseLevel(Number(event?.target?.value));
+    }
+
+    onTaskSettingsChange(event: any, taskType: string, settingsKey: string): void {
+        this._settingsModel.setTaskSetting(taskType, settingsKey, String(event?.target?.value));
     }
 
     onSettingsSave() {
@@ -131,15 +136,16 @@ class Settings extends React.Component<Props, State> {
     render() {
         return <div className="Settings">
             <h2>{this.state.title}</h2>
-            <h4>{this.state.message}</h4>
+            <h4 className="importantMessage">{this.state.message}</h4>
             {Boolean(this.state.subsection === SUBSECTIONS.CHECK_PASSWORD) && (
                 <Auth
                     onAuthPasswordChange={(event: any) => this.onAuthPasswordChange(event)}
                     onAuthPasswordCheck={() => this.onAuthPasswordCheck()}
                 />
             )}
-            {Boolean(this.state.subsection === SUBSECTIONS.EDIT_SETTINGS) && (
+            {Boolean(this.state.subsection === SUBSECTIONS.REGISTER) && (
                 <Edit
+                    isRegistration={true}
                     settingsModel={this._settingsModel}
                     formFields={this.state.formFields}
                     onPasswordConfirmChange={(event: any) => this.onPasswordConfirmChange(event)}
@@ -147,6 +153,21 @@ class Settings extends React.Component<Props, State> {
                     onParentEmailChange={(event: any) => this.onParentEmailChange(event)}
                     onChildNameChange={(event: any) => this.onChildNameChange(event)}
                     onChildBaseLevelChange={(event: any) => this.onChildBaseLevelChange(event)}
+                    onTaskSettingsChange={(event: any, taskType: string, settingsKey: string) => this.onTaskSettingsChange(event, taskType, settingsKey)}
+                    onSettingsSave={() => this.onSettingsSave()}
+                />
+            )}
+            {Boolean(this.state.subsection === SUBSECTIONS.EDIT_SETTINGS) && (
+                <Edit
+                    isRegistration={false}
+                    settingsModel={this._settingsModel}
+                    formFields={this.state.formFields}
+                    onPasswordConfirmChange={(event: any) => this.onPasswordConfirmChange(event)}
+                    onParentPasswordChange={(event: any) => this.onParentPasswordChange(event)}
+                    onParentEmailChange={(event: any) => this.onParentEmailChange(event)}
+                    onChildNameChange={(event: any) => this.onChildNameChange(event)}
+                    onChildBaseLevelChange={(event: any) => this.onChildBaseLevelChange(event)}
+                    onTaskSettingsChange={(event: any, taskType: string, settingsKey: string) => this.onTaskSettingsChange(event, taskType, settingsKey)}
                     onSettingsSave={() => this.onSettingsSave()}
                 />
             )}

@@ -1,6 +1,6 @@
 import BaseTaskModel from './base-task-model';
 import IllustratedDictionaryModel from '../illustrated-dictionary-model';
-import {IllustratedDictionaryItem, TaskSettings} from '../../types';
+import { IllustratedDictionaryItem } from '../../types';
 
 import {TASK_TYPES, BASE_URL} from "../../constants";
 

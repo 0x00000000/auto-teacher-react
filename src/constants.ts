@@ -4,7 +4,7 @@ const STORAGE = {
     SETTINGS: 'STORAGE_SETTINGS',
 };
 
-const TASK_TYPES ={
+const TASK_TYPES = {
     ADDICTION: 'task-type-addiction',
     ADDICTION_REVERSED: 'task-type-addiction-reversed',
     SUBTRACTION: 'task-type-subtraction',

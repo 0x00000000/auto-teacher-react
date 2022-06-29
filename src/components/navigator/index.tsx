@@ -12,9 +12,7 @@ import {
     SECTIONS,
 } from "../../constants";
 
-type Props = {
-
-};
+type Props = {};
 
 type State = {
     section: string;
