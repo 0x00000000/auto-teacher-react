@@ -5,8 +5,8 @@ type TaskSettingsType = {
 }
 
 type IllustratedDictionaryItem = {
-    russian: string;
+    text: string;
     image: string;
 }
 
-export type {TaskSettingsType, IllustratedDictionaryItem,};
+export type {TaskSettingsType, IllustratedDictionaryItem};

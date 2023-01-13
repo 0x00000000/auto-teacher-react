@@ -1,4 +1,6 @@
 import StorageModel from './storage-model';
+import DataProvider from '../data-providers/data-provider';
+import DataProviderCookie from '../data-providers/data-provider-cookie';
 
 type SessionData = {
     counter: number,
@@ -6,54 +8,60 @@ type SessionData = {
 };
 
 class StatisticModel {
-    _type: string = '';
-    _storage: StorageModel = new StorageModel();
-    _statisticData: any = null;
-    _sessionData: SessionData = {counter: 0, score: 0,};
-    _scoreForLevel: number = 100;
+    private _type: string = '';
+    private _storage: StorageModel;
+    private _statisticData: any = null;
+    private _sessionData: SessionData = {counter: 0, score: 0,};
+    private _scoreForLevel: number = 100;
 
-    constructor(type: string) {
-        this.init(type);
+    constructor(type: string, dataProvider?: DataProvider) {
+        if (dataProvider) {
+            this._storage = new StorageModel(dataProvider);
+        } else {
+            this._storage = new StorageModel(new DataProviderCookie());
+        }
+
+        this.initForType(type);
     }
 
-    init(type: string) {
+    public initForType(type: string) {
         this._type = type;
         this._statisticData = this._storage.get(this._type);
         this._sessionData = {counter: 0, score: 0,};
     }
 
-    getTotalCounter(): number {
+    public getTotalCounter(): number {
         return this._statisticData?.counter ?? 0;
     }
 
-    getTotalScore(): number {
+    public getTotalScore(): number {
         return this._statisticData?.score ?? 0;
     }
 
-    getTotalLevel(): number {
+    public getTotalLevel(): number {
         return Math.ceil(this.getTotalScore() / this._scoreForLevel);
     }
 
-    getSessionCounter(): number {
+    public getSessionCounter(): number {
         return this._sessionData.counter;
     }
 
-    getSessionScore(): number {
+    public getSessionScore(): number {
         return this._sessionData.score;
     }
 
-    incCounter(counter: number): number {
+    public incCounter(counter: number): number {
         this._statisticData = this._storage.increase(this._type, {counter: counter,});
         this._sessionData.counter += counter;
         return this._sessionData.counter;
     }
 
-    incScore(score: number, counter: number = 1): SessionData {
+    public incScore(score: number, counter: number = 1): SessionData {
         this._statisticData = this._storage.increase(this._type, {score: score, counter: counter,});
         this._sessionData.score += score;
+        this._sessionData.counter += counter;
         return this._sessionData;
     }
-
 }
 
 export default StatisticModel;

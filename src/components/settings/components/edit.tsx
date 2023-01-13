@@ -21,8 +21,8 @@ type State = {
     formFields: any,
 }
 class Edit extends React.Component<Props, State> {
-    _taskFactory: TaskFactory = new TaskFactory();
-    _tasksTypesList: string[] = [];
+    private _taskFactory: TaskFactory = new TaskFactory();
+    private _tasksTypesList: string[] = [];
 
     constructor(props: Props) {
         super(props);

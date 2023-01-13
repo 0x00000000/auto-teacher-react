@@ -3,13 +3,10 @@ import React from 'react';
 import StatisticModel from '../../models/statistic-model';
 import SettingsModel from '../../models/settings-model';
 import BaseTaskModel from '../../models/tasks/base-task-model';
-
 import TaskFactory from "../../classes/task-factory";
 import { TaskSettingsType } from "../../types";
-
 import BaseTaskCompenent from './components/base-task'
 import ReadingTaskCompenent from './components/reading-task'
-
 import {TASK_TYPES} from '../../constants';
 
 type Props = {
@@ -24,8 +21,8 @@ type State = {
 }
 
 class Task extends React.Component<Props, State> {
-    _taskModel: BaseTaskModel;
-    _taskFactory: TaskFactory = new TaskFactory();
+    private _taskModel: BaseTaskModel;
+    private _taskFactory: TaskFactory = new TaskFactory();
 
     constructor(props: Props) {
         super(props);

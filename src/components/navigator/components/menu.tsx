@@ -20,7 +20,6 @@ class Menu extends React.Component<Props> {
                 value={SECTIONS.SETTINGS}
             >Settings</button>
         </div>
-
     }
 }
 

@@ -8,29 +8,46 @@ type OperatorsSettings = {
 };
 
 class BaseTaskModel {
-    _leftOperand?: number;
-    _rightOperand?: number;
-    _settings?: OperatorsSettings;
-    _type: string = '';
-
-    getTotalScoreDevideCoof(): number {
-        return 50;
-    }
-
-    getBaseLevelMultipleCoof(): number {
-        return 1;
-    }
+    protected _leftOperand?: number;
+    protected _rightOperand?: number;
+    protected _settings?: OperatorsSettings;
+    protected _type: string = '';
 
     constructor(settings: TaskSettingsType) {
         this.initSettings(settings);
     }
 
-    init() {
+    public initTask() {
         this._leftOperand = this.getOperatorValue(this._settings?.leftOperandMin, this._settings?.leftOperandMax);
         this._rightOperand = this.getOperatorValue(this._settings?.leftOperandMin, this._settings?.rightOperandMax);
     }
 
-    initSettings(settings: TaskSettingsType) {
+    public getType(): string {
+        return this._type;
+    }
+
+    public getExercisePartsList(): Array<string> {
+        return [];
+    }
+
+    public getAnswersList(): Array<string> {
+        return [];
+    }
+
+    public checkAnswersList(answersList: Array<string>): boolean {
+        const isCorrect = this.getAnswersList().reduce(
+            (previousValue, currentValue, currentIndex) => previousValue && (currentValue === answersList[currentIndex]),
+            true
+        );
+        return isCorrect;
+    }
+
+    public getAnswerCasesList(): Array<string> {
+        let to: number = this.getMax(this?._settings?.leftOperandMax, this?._settings?.rightOperandMax);
+        return this.getCasesRange(0, to);
+    }
+
+    protected initSettings(settings: TaskSettingsType) {
         let operatorMax: number = this.getMaxOperator(settings);
         this._settings = {};
         this._settings.leftOperandMin = Math.floor(operatorMax / 2);
@@ -39,40 +56,19 @@ class BaseTaskModel {
         this._settings.rightOperandMax = operatorMax ?? 5;
     }
 
-    getExercisePartsList(): Array<string> {
-        return [];
+    protected getTotalScoreDevideCoof(): number {
+        return 50;
     }
 
-    getAnswersList(): Array<string> {
-        return [];
+    protected getBaseLevelMultipleCoof(): number {
+        return 1;
     }
 
-    getAnswersCount(): number {
-        return this.getAnswersList().length;
-    }
-
-    checkAnswersList(answersList: Array<string>): boolean {
-        const isCorrect = this.getAnswersList().reduce(
-            (previousValue, currentValue, currentIndex) => previousValue && (currentValue === answersList[currentIndex]),
-            true
-        );
-        return isCorrect;
-    }
-
-    getAnswerCasesList(): Array<string> {
-        let to: number = this.getMax(this?._settings?.leftOperandMax, this?._settings?.rightOperandMax);
-        return this.getCasesRange(0, to);
-    }
-
-    getType(): string {
-        return this._type;
-    }
-
-    getOperatorValue(min?: number, max?: number) {
+    protected getOperatorValue(min?: number, max?: number) {
         return Math.floor(Math.random() * (Number(max) - Number(min) + 1)) + Number(min);
     }
 
-    getMaxOperator(settings: TaskSettingsType): number {
+    protected getMaxOperator(settings: TaskSettingsType): number {
         const baseValue: number = settings.baseLevel * this.getBaseLevelMultipleCoof();
         let increaseValue: number = settings.totalScore / this.getTotalScoreDevideCoof();
 
@@ -84,33 +80,31 @@ class BaseTaskModel {
         return operatorMax;
     }
 
-    getLeftOperand(): string {
+    protected getLeftOperand(): string {
         return String(this._leftOperand);
     }
 
-    getRightOperand(): string {
+    protected getRightOperand(): string {
         return String(this._rightOperand);
     }
 
-    swapOperands(): void {
+    protected swapOperands(): void {
         let temp: number = Number(this._leftOperand);
         this._leftOperand = this._rightOperand;
         this._rightOperand = temp;
     }
 
-    getMax(value1?: number, value2?: number): number {
+    protected getMax(value1?: number, value2?: number): number {
         return Number(value1) > Number(value2) ? Number(value1) : Number(value2);
     }
 
-    getCasesRange(from: number, to: number): Array<string> {
+    protected getCasesRange(from: number, to: number): Array<string> {
         let casesList: Array<string> = [];
         for (let i: number = from; i <= to; i++) {
             casesList.push(String(i));
         }
         return casesList;
     }
-
 }
 
 export default BaseTaskModel;
-

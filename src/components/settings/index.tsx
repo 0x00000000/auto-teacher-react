@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SettingsModel from "../../models/settings-model"
-
 import Auth from './components/auth';
 import Edit from './components/edit';
 
@@ -25,19 +24,18 @@ type State = {
 };
 
 class Settings extends React.Component<Props, State> {
-    _settingsModel: SettingsModel = new SettingsModel();
-    _authPassword: string = '';
-    _parentPassword: string = '';
-    _passwordConfirm: string = '';
-    _messagesList: any = {
+    private _settingsModel: SettingsModel = new SettingsModel();
+    private _authPassword: string = '';
+    private _parentPassword: string = '';
+    private _passwordConfirm: string = '';
+    private _messagesList: any = {
         PASSWORD_CONFIRM: 'Password and confirmation are different',
         REQUIRED_FIELDS: 'Password and child name are required',
         WRONG_PASSWORD: 'Wrong password',
         SETTINGS_SAVED: 'Sattings saved',
     };
-
-    _titleRegister: string = 'Registration';
-    _titleSettings: string = 'Settings';
+    private _titleRegister: string = 'Registration';
+    private _titleSettings: string = 'Settings';
 
     constructor(props: Props) {
         super(props);

@@ -5,7 +5,7 @@ type TaskSettingsItemType = {
 };
 
 class TaskSettingsModel {
-    _taskSettingsData: TaskSettingsItemType[] = [
+    private _taskSettingsData: TaskSettingsItemType[] = [
         {
             key: 'maxLevel',
             caption: 'Max level',
@@ -13,7 +13,7 @@ class TaskSettingsModel {
         },
     ];
 
-    getKeysList(): string[] {
+    public getKeysList(): string[] {
         let keysList: string[] = [];
         this._taskSettingsData.map(function(value: TaskSettingsItemType) {
             keysList.push(value.key);
@@ -21,7 +21,7 @@ class TaskSettingsModel {
         return keysList;
     }
 
-    getCaption(key: string) {
+    public getCaption(key: string): string {
         let caption: string = '';
         let settingsItem: TaskSettingsItemType | undefined = this._taskSettingsData.find((element: TaskSettingsItemType) => (element.key === key));
         if (settingsItem) {
@@ -29,8 +29,6 @@ class TaskSettingsModel {
         }
         return caption;
     }
-
 }
 
 export default TaskSettingsModel;
-

@@ -11,8 +11,8 @@ type Props = {
 };
 
 class TaskSettings extends React.Component<Props> {
-    _taskFactory: TaskFactory = new TaskFactory();
-    _taskSettingsModel: TaskSettingsModel = new TaskSettingsModel();
+    private _taskFactory: TaskFactory = new TaskFactory();
+    private _taskSettingsModel: TaskSettingsModel = new TaskSettingsModel();
 
     constructor(props: Props) {
         super(props);

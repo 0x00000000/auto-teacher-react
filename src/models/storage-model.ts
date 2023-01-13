@@ -1,11 +1,13 @@
-class StorageModel {
-    _key: string = 'autoTeacherStatistic';
-    _lifeTimeMilliseconds: number = 2592000000;
+import DataProvider from '../data-providers/data-provider';
 
-    constructor() {
+class StorageModel {
+    private _dataProvider: DataProvider;
+
+    constructor(dataProvider: DataProvider) {
+        this._dataProvider = dataProvider;
     }
 
-    get(section: string): object {
+    public get(section: string): object {
         const storageData: any = this.getStorageData();
         if (section in storageData) {
             return storageData[section];
@@ -14,13 +16,13 @@ class StorageModel {
         }
     }
 
-    set(section: string, data: object) {
+    public set(section: string, data: object) {
         const storageData: any = this.getStorageData();
         storageData[section] = data;
         this.setStorageData(storageData);
     }
 
-    increase(section: string, dataIncrement: any): object {
+    public increase(section: string, dataIncrement: any): object {
         const storageData: any = this.getStorageData();
         if (storageData[section]) {
             for (let key in dataIncrement) {
@@ -37,22 +39,13 @@ class StorageModel {
         return storageData[section];
     }
 
-    setStorageData(data: any): void {
-        var d = new Date();
-        d.setTime(d.getTime() + this._lifeTimeMilliseconds);
-        var expires = 'expires=' + d.toUTCString();
-        document.cookie = this._key + '=' + JSON.stringify(data) + "; " + expires;
+    private setStorageData(data: any): void {
+        this._dataProvider.setData(data);
     }
 
-    getStorageData(): any {
-        let match: any = document.cookie.match(new RegExp('(^| )' + this._key + '=([^;]+)'));
-        if (match && match[2]) {
-            return JSON.parse(match[2]);
-        } else {
-            return {};
-        }
+    private getStorageData(): any {
+        return this._dataProvider.getData();
     }
-
 }
 
 export default StorageModel;

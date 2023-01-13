@@ -1,11 +1,9 @@
 import React from 'react';
 
 import AnswerCasesImagesField from "./answer-cases-images-field";
-
 import BaseTaskCompenent from './base-task'
 
 class ReadingTaskCompenent extends BaseTaskCompenent {
-
     render() {
         return (
             <div className="task-container">

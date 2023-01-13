@@ -1,6 +1,5 @@
 import {TASK_TYPES} from '../constants';
 import {TaskSettingsType} from "../types";
-
 import BaseTaskModel from '../models/tasks/base-task-model';
 import AddictionTaskModel from '../models/tasks/addiction-task-model';
 import AddictionReversedTaskModel from '../models/tasks/addiction-reversed-task-model';
@@ -16,7 +15,8 @@ type TaskDataItemType = {
 
 class TaskFactory {
 
-    _taskData: TaskDataItemType[] = [
+    private _taskData: TaskDataItemType[] =
+    [
         {
             type: TASK_TYPES.ADDICTION,
             caption: 'Addiction (A + B)',
@@ -43,7 +43,7 @@ class TaskFactory {
         },
     ];
 
-    createTask(taskType: string, settings: TaskSettingsType) {
+    public createTask(taskType: string, settings: TaskSettingsType) {
         let taskModel: BaseTaskModel;
         switch (taskType) {
             case TASK_TYPES.ADDICTION:
@@ -68,11 +68,11 @@ class TaskFactory {
                 taskModel = new AddictionTaskModel(settings);
                 break;
         }
-        taskModel.init();
+        taskModel.initTask();
         return taskModel;
     }
 
-    getTasksTypesList(): string[] {
+    public getTasksTypesList(): string[] {
         let typesList: string[] = [];
         type ObjectKey = keyof typeof TASK_TYPES;
         for (let type in TASK_TYPES) {
@@ -82,7 +82,7 @@ class TaskFactory {
         return typesList;
     }
 
-    getTaskCaption(type: string): string {
+    public getTaskCaption(type: string): string {
         let caption: string = '';
 
         this._taskData.map(function(data) {
@@ -97,7 +97,6 @@ class TaskFactory {
 
         return caption;
     }
-
 }
 
 export default TaskFactory;

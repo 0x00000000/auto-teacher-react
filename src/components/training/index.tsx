@@ -45,7 +45,7 @@ class Training extends React.Component<Props, State> {
     onTypeSelect(event: any): void {
         if (event.target?.value) {
             const type = String(event.target?.value);
-            this._statisticModel.init(type);
+            this._statisticModel.initForType(type);
 
             this.setState(state => ({
                 ...state,
@@ -80,7 +80,7 @@ class Training extends React.Component<Props, State> {
                 readyToFinish: true,
             }));
         } else {
-            this._statisticModel.init(this.props.tasksDefaultType);
+            this._statisticModel.initForType(this.props.tasksDefaultType);
             this.setState(state => ({
                 sessionScore: this._statisticModel.getSessionScore(),
                 sessionCounter: this._statisticModel.getSessionCounter(),

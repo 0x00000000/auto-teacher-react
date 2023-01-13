@@ -3,10 +3,10 @@ import {TASK_TYPES} from '../../constants';
 import {TaskSettingsType} from "../../types";
 
 class SubtractionReversedTaskModel extends BaseTaskModel {
-    _isFirstOperandIsAsked: boolean = false;
+    protected _isFirstOperandIsAsked: boolean = false;
 
-    init() {
-        super.init();
+    public initTask() {
+        super.initTask();
         this._type = TASK_TYPES.SUBTRACTION_REVERSED;
 
         if (Number(this._leftOperand) < Number(this._rightOperand)) {
@@ -28,16 +28,7 @@ class SubtractionReversedTaskModel extends BaseTaskModel {
 
     }
 
-    initSettings(settings: TaskSettingsType) {
-        const operatorMax: number = this.getMaxOperator(settings);
-        this._settings = {};
-        this._settings.leftOperandMin = 0;
-        this._settings.leftOperandMax = Math.floor((operatorMax ?? 5) * 0.7);
-        this._settings.rightOperandMin = 0;
-        this._settings.rightOperandMax = Math.floor((operatorMax ?? 5) * 0.7);
-    }
-
-    getExercisePartsList(): Array<string> {
+    public getExercisePartsList(): Array<string> {
         if (this._isFirstOperandIsAsked) {
             return [
                 '',
@@ -51,7 +42,7 @@ class SubtractionReversedTaskModel extends BaseTaskModel {
         }
     }
 
-    getAnswersList(): Array<string> {
+    public getAnswersList(): Array<string> {
         if (this._isFirstOperandIsAsked) {
             return [String(Number(this.getLeftOperand()) + Number(this.getRightOperand()))];
         } else {
@@ -59,6 +50,14 @@ class SubtractionReversedTaskModel extends BaseTaskModel {
         }
     }
 
+    protected initSettings(settings: TaskSettingsType) {
+        const operatorMax: number = this.getMaxOperator(settings);
+        this._settings = {};
+        this._settings.leftOperandMin = 0;
+        this._settings.leftOperandMax = Math.floor((operatorMax ?? 5) * 0.7);
+        this._settings.rightOperandMin = 0;
+        this._settings.rightOperandMax = Math.floor((operatorMax ?? 5) * 0.7);
+    }
 }
 
 export default SubtractionReversedTaskModel;

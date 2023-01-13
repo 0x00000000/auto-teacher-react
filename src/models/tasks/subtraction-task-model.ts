@@ -2,8 +2,8 @@ import BaseTaskModel from './base-task-model';
 import {TASK_TYPES} from '../../constants';
 
 class SubtractionTaskModel extends BaseTaskModel {
-    init() {
-        super.init();
+    public initTask() {
+        super.initTask();
         this._type = TASK_TYPES.SUBTRACTION;
 
         if (Number(this._leftOperand) < Number(this._rightOperand)) {
@@ -11,16 +11,15 @@ class SubtractionTaskModel extends BaseTaskModel {
         }
     }
 
-    getExercisePartsList(): Array<string> {
+    public getExercisePartsList(): Array<string> {
         return [
             this.getLeftOperand() + ' - ' + this.getRightOperand() + ' = ',
         ];
     }
 
-    getAnswersList(): Array<string> {
+    public getAnswersList(): Array<string> {
         return [String(Number(this.getLeftOperand()) - Number(this.getRightOperand()))];
     }
-
 }
 
 export default SubtractionTaskModel;

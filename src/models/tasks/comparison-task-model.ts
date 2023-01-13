@@ -2,28 +2,19 @@ import BaseTaskModel from './base-task-model';
 import {TASK_TYPES} from "../../constants";
 
 class ComparisonTaskModel extends BaseTaskModel {
-
-    getTotalScoreDevideCoof(): number {
-        return 10;
-    }
-
-    getBaseLevelMultipleCoof(): number {
-        return 10;
-    }
-
-    init() {
-        super.init();
+    public initTask() {
+        super.initTask();
         this._type = TASK_TYPES.COMPARISON;
     }
 
-    getExercisePartsList(): Array<string> {
+    public getExercisePartsList(): Array<string> {
         return [
             this.getLeftOperand() + ' ',
             ' ' + this.getRightOperand(),
         ];
     }
 
-    getAnswersList(): Array<string> {
+    public getAnswersList(): Array<string> {
         let result: string = '';
         let diff: number = Number(this.getLeftOperand()) - Number(this.getRightOperand());
         if (diff > 0) {
@@ -36,10 +27,17 @@ class ComparisonTaskModel extends BaseTaskModel {
         return [result];
     }
 
-    getAnswerCasesList(): Array<string> {
+    public getAnswerCasesList(): Array<string> {
         return ['<', '=', '>',];
     }
 
+    protected getTotalScoreDevideCoof(): number {
+        return 10;
+    }
+
+    protected getBaseLevelMultipleCoof(): number {
+        return 10;
+    }
 }
 
 export default ComparisonTaskModel;

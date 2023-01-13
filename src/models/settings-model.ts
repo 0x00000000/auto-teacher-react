@@ -1,47 +1,51 @@
 import StorageModel from './storage-model';
+import DataProvider from '../data-providers/data-provider';
+import DataProviderCookie from '../data-providers/data-provider-cookie';
 
 class SettingsModel {
-    _storageKey = 'STORAGE_SETTINGS';
-    _storage: StorageModel = new StorageModel();
-    _settingsData: any = null;
+    private _storageKey = 'STORAGE_SETTINGS';
+    private _storage: StorageModel
+    private _settingsData: any = null;
 
-    constructor() {
+    constructor(dataProvider?: DataProvider) {
+        if (dataProvider) {
+            this._storage = new StorageModel(dataProvider);
+        } else {
+            this._storage = new StorageModel(new DataProviderCookie());
+        }
+
         this._settingsData = this._storage.get(this._storageKey);
     }
 
-    getParentPassword(): string {
-        return '';
-    }
-
-    setParentPassword(parentPassword: string): void {
+    public setParentPassword(parentPassword: string): void {
         this._settingsData.parentPassword = parentPassword;
     }
 
-    getParentEmail(): string {
+    public getParentEmail(): string {
         return this._settingsData?.parentEmail ?? '';
     }
 
-    setParentEmail(parentEmail: string): void {
+    public setParentEmail(parentEmail: string): void {
         this._settingsData.parentEmail = parentEmail;
     }
 
-    getChildName(): string {
+    public getChildName(): string {
         return this._settingsData?.childName ?? '';
     }
 
-    setChildName(childName: string): void {
+    public setChildName(childName: string): void {
         this._settingsData.childName = childName;
     }
 
-    getChildBaseLevel(): number {
+    public getChildBaseLevel(): number {
         return this._settingsData?.childBaseLevel ?? 5;
     }
 
-    setChildBaseLevel(childBaseLevel: number): void {
+    public setChildBaseLevel(childBaseLevel: number): void {
         this._settingsData.childBaseLevel = childBaseLevel;
     }
 
-    setTaskSetting(taskType: string, key: string, value: string): void {
+    public setTaskSetting(taskType: string, key: string, value: string): void {
         if (! this._settingsData?.taskSettings) {
             this._settingsData.taskSettings = {};
         }
@@ -51,12 +55,11 @@ class SettingsModel {
         this._settingsData.taskSettings[taskType][key] = value;
     }
 
-    getTaskSetting(taskType: string, key: string): string[] {
-console.log('taskSettings', this._settingsData?.taskSettings);
+    public getTaskSetting(taskType: string, key: string): string[] {
         return this._settingsData?.taskSettings?.[taskType]?.[key];
     }
 
-    save(): boolean {
+    public save(): boolean {
         if (this.isValid()) {
             this._storage.set(this._storageKey, this._settingsData);
             return true;
@@ -65,11 +68,11 @@ console.log('taskSettings', this._settingsData?.taskSettings);
         }
     }
 
-    isValid(): boolean {
-        return this._settingsData?.childName && this._settingsData?.parentPassword;
+    public isValid(): boolean {
+        return Boolean(this._settingsData?.childName && this._settingsData?.parentPassword);
     }
 
-    checkParentPassword(password: string): boolean {
+    public checkParentPassword(password: string): boolean {
         return this._settingsData?.parentPassword === password;
     }
 }

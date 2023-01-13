@@ -1,0 +1,6 @@
+I used next commands to create this application
+$ npx create-react-app media-server --template typescript
+$ npm install --save-dev ts-jest
+$ npm install --save-dev @types/jsdom
+$ npx ts-jest config:init
+

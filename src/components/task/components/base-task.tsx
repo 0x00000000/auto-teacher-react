@@ -41,7 +41,7 @@ class BaseTaskCompenent extends React.Component<Props, State> {
             this.checkAnswer();
         }
 
-        this.props.taskModel.init();
+        this.props.taskModel.initTask();
         this.setState(state => ({
             ...state,
             exercisePartsList: this.props.taskModel.getExercisePartsList(),

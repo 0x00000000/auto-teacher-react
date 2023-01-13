@@ -2,11 +2,8 @@ import React from 'react';
 
 import Settings from '../settings';
 import Training from "../training";
-
 import SettingsModel from "../../models/settings-model"
-
 import Menu from './components/menu';
-
 import {
     TASK_TYPES,
     SECTIONS,
